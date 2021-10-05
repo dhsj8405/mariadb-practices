@@ -62,7 +62,7 @@ where a.salary > 120000;
 select distinct title
 from titles
 order by length(title) desc;
-
+-- 한글은 char_length   써야함
 
 -- 문제10
 -- 현재 Engineer 직책의 사원은 총 몇 명입니까?

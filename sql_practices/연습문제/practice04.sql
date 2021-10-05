@@ -1,14 +1,25 @@
 -- 문제1.
 -- 현재 평균 연봉보다 많은 월급을 받는 직원은 몇 명이나 있습니까?
-select a.salary
+select *
 from salaries a
 where a.to_date = '9999-01-01'
-having avg(a.salary) < a.salary
+having a.salary >avg(salary);
 
 
 -- 문제2.
 -- 현재, 각 부서별로 최고의 급여를 받는 사원의 사번, 이름, 부서 연봉을 조회하세요. 단
 -- 조회결과는 연봉의 내림차순으로 정렬되어 나타나야 합니다.
+select a.emp_no as 사번,
+     concat(a.first_name," ",a.last_name) as 이름,
+	d.dept_name 부서명,
+	max(b.salary)
+from employees a
+	join  salaries b on a.emp_no = b.emp_no and b.to_date = '9999-01-01'
+	join  dept_emp c on a.emp_no = c.emp_no and c.to_date = '9999-01-01'
+    join  departments d on c.dept_no =  d.dept_no 
+    group by d.dept_name;
+    
+    
 
 -- 문제3.
 -- 현재, 자신의 부서 평균 급여보다 연봉(salary)이 많은 사원의 사번, 이름과 연봉을 조회하세요

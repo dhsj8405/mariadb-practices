@@ -7,6 +7,8 @@ select *
 from departments;
 select *
 from salaries;
+select *
+from dept_emp;
 -- 문제 1.
 -- 현재 급여가 많은 직원부터 직원의 사번, 이름, 그리고 연봉을 출력 하시오.
 
@@ -96,6 +98,16 @@ where a.emp_no = b.emp_no
   and b.to_date = '9999-01-01'
   and a.title = 'Engineer'
   having b.salary > 40000;
+
+-- sol2
+select e.emp_no as '사원번호', s.salary as '현재 급여'
+from employees e
+	join titles t on e.emp_no=t.emp_no and t.to_date='9999-01-01'
+	join salaries s on t.emp_no=s.emp_no and s.to_date='9999-01-01'
+where title='Engineer' and s.salary >= 40000
+order by s.salary desc;
+
+
 
 -- 문제8.
 -- 현재 급여가 50000이 넘는 직책을 직책, 급여로 급여가 큰 순서대로 출력하시오
