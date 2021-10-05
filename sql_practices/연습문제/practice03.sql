@@ -1,11 +1,33 @@
 -- practice 03
-
+select *
+from employees;
+select *
+from titles;
+select *
+from departments;
+select *
+from salaries;
 -- 문제 1.
 -- 현재 급여가 많은 직원부터 직원의 사번, 이름, 그리고 연봉을 출력 하시오.
-todate orderby
+
+  select a.emp_no as 사번,
+	     concat(a.first_name," ",a.last_name) as 이름,
+         b.salary as 연봉
+    from employees a join salaries b on a.emp_no = b.emp_no
+   where b.to_date = '9999-01-01'
+order by a.title desc;
+
 -- 문제2.
--- 전체 사원의 사번, 이름, 현재 직책을 이름 순서로 출력하세요.
-                      where절 이큅조인 추천  todate9999
+전체 사원의 사번, 이름, 현재 직책을 이름 순서로 출력하세요.
+--  where절 이큅조인 추천  todate9999
+  
+  select a.emp_no as 사번,
+	     concat(a.first_name," ",a.last_name) as 이름,
+         b.title as 직책
+    from employees a join titles b on a.emp_no = b.emp_no
+   where b.to_date = '9999-01-01'
+   order by a.first_name desc;
+
 -- 문제3.
 -- 전체 사원의 사번, 이름, 현재 부서를 이름 순서로 출력하세요..
 
