@@ -18,8 +18,8 @@ from employees;
 -- 가장 오래 근속한 직원의 입사일은 언제인가요? 다음 형식으로 출력해주세요.
 -- 예) 2014년 07월 10일
 
-select period_diff(date_format( to_date, '%Y%m'),date_format(from_date,'%Y%m')) as year
-  from titles;
+select date_format(min(hire_date), '%Y년 %c월 %d일')
+from employees;
 
 -- 문제4.
 -- 현재 이 회사의 평균 연봉은 얼마입니까?
@@ -29,10 +29,6 @@ select avg(salary)
 
 -- 문제5.
 -- 현재 이 회사의 최고/최저 연봉은 얼마입니까?
-select (salary), to_date
-  from salaries
-where to_date like '9999%'
-  order by salary desc;
 
 select max(salary),min(salary)
   from salaries

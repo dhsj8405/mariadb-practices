@@ -1,5 +1,10 @@
 -- 문제1.
 -- 현재 평균 연봉보다 많은 월급을 받는 직원은 몇 명이나 있습니까?
+select a.salary
+from salaries a
+where a.to_date = '9999-01-01'
+having avg(a.salary) < a.salary
+
 
 -- 문제2.
 -- 현재, 각 부서별로 최고의 급여를 받는 사원의 사번, 이름, 부서 연봉을 조회하세요. 단
