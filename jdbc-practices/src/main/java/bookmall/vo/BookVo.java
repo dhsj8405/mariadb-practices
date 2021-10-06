@@ -1,41 +1,52 @@
 package bookmall.vo;
 
 public class BookVo {
-	private Long no;
+	private int no;
 	private String title;
 	private int price;
-	private Long categoryNum;
+	private int categoryNum;
 	private String categoryName;
-	public Long getNo() {
+	
+	public int getNo() {
 		return no;
 	}
-	public void setNo(Long no) {
+
+	public void setNo(int no) {
 		this.no = no;
 	}
+
 	public String getTitle() {
 		return title;
 	}
+
 	public void setTitle(String title) {
 		this.title = title;
 	}
+
 	public int getPrice() {
 		return price;
 	}
+
 	public void setPrice(int price) {
 		this.price = price;
 	}
-	public Long getCategoryNum() {
+
+	public int getCategoryNum() {
 		return categoryNum;
 	}
-	public void setCategoryNum(Long categoryNum) {
+
+	public void setCategoryNum(int categoryNum) {
 		this.categoryNum = categoryNum;
 	}
+
 	public String getCategoryName() {
 		return categoryName;
 	}
+
 	public void setCategoryName(String categoryName) {
 		this.categoryName = categoryName;
 	}
+
 	@Override
 	public String toString() {
 		return "BookVo [no=" + no + ", title=" + title + ", price=" + price + ", categoryNum=" + categoryNum

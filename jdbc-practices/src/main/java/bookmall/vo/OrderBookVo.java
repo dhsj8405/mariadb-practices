@@ -1,6 +1,6 @@
 package bookmall.vo;
 
-public class orderBookVo {
+public class OrderBookVo {
 	private int bookNo;
 	private int quantity;
 	private int price;

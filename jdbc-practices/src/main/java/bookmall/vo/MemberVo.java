@@ -1,15 +1,15 @@
 package bookmall.vo;
 
 public class MemberVo {
-	private Long no;
+	private int no;
 	private String name;
 	private String email;
-	private int password;
+	private String password;
 	private String phoneNumber;
-	public Long getNo() {
+	public int getNo() {
 		return no;
 	}
-	public void setNo(Long no) {
+	public void setNo(int no) {
 		this.no = no;
 	}
 	public String getName() {
@@ -24,10 +24,10 @@ public class MemberVo {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	public int getPassword() {
+	public String getPassword() {
 		return password;
 	}
-	public void setPassword(int password) {
+	public void setPassword(String password) {
 		this.password = password;
 	}
 	public String getPhoneNumber() {

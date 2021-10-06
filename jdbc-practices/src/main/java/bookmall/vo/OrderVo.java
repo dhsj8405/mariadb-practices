@@ -6,6 +6,7 @@ public class OrderVo {
 	private int payment;
 	private String address;
 	private int memberNo;
+
 	public int getNo() {
 		return no;
 	}
