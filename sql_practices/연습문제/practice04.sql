@@ -82,18 +82,27 @@ select a.emp_no,
        concat(a.first_name," ",a.last_name) as 이름,
        b.title,
        c.salary
-from employees a, titles b, salaries c, dept_emp e,
-(select avg(a.salary)as avg_salary, b.dept_no
-from salaries a, dept_emp b
-where a.emp_no = b.emp_no
-  and a.to_date ='9999-01-01'
-  and b.to_date ='9999-01-01'
-group by b.dept_no 
-order by avg_salary desc
-limit 1) d
+from employees a,
+     titles b,
+     salaries c,
+     dept_emp e,
+	(select avg(a.salary)as avg_salary, b.dept_no
+	     from salaries a, dept_emp b
+	    where a.emp_no = b.emp_no
+	      and a.to_date ='9999-01-01'
+	      and b.to_date ='9999-01-01'
+	 group by b.dept_no 
+ 	 order by avg_salary desc
+     limit 1) d
 where a.emp_no = b.emp_no
   and a.emp_no = c.emp_no
-  and e.dept_no = d.dept_no;
+  and a.emp_no = e.emp_no
+  and e.dept_no = d.dept_no
+  and b.to_date = '9999-01-01'
+  and c.to_date = '9999-01-01'
+  and e.to_date = '9999-01-01'
+  order by c.salary desc;
+  
 -- 문제6.
 -- 평균 연봉이 가장 높은 부서는?
 
@@ -107,28 +116,17 @@ where a.emp_no = b.emp_no
 group by b.dept_no) b
 where a.dept_no = b.dept_no;
 
-select *
-from departments a,
-	 (select avg(salary) as avg_salary, b.dept_no
-	    from salaries a,dept_emp b
-	   where a.emp_no = b.emp_no
-		 and a.to_date ='9999-01-01'
-		 and b.to_date ='9999-01-01'
-	   group by b.dept_no) b
-where a.dept_no = b.dept_no;
-
-select max(avg_salary) as max_avg_salary, dept_no
-       from (select avg(salary) as avg_salary, b.dept_no
-				from salaries a,dept_emp b
-			   where a.emp_no = b.emp_no
-				 and a.to_date ='9999-01-01'
-				 and b.to_date ='9999-01-01'
-			   group by b.dept_no) a
-		where max_avg_salary.emp_no= dept_no;
-select *
-from departments a;
 -- 문제7.
 -- 평균 연봉이 가장 높은 직책?
+select (avg_salary), a.title
+from titles a,
+(select avg(salary) as avg_salary, b.title
+from salaries a,titles b
+where a.emp_no = b.emp_no
+  and a.to_date ='9999-01-01'
+  and b.to_date ='9999-01-01'
+  group by b.title) b
+  group by b.title;
 
 -- 문제8.
 -- 현재 자신의 매니저보다 높은 연봉을 받고 있는 직원은?

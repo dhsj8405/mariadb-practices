@@ -2,26 +2,20 @@ package test;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.sql.Statement;
 
-public class UpdateTest01 {
+public class DeleteTest02 {
 
 	public static void main(String[] args) {
-		DeptVo vo = new DeptVo();
-		vo.setNo(10L);
-		vo.setName("전략팀");
-		
-		Boolean result = update(vo);
-		if(result) {
-			System.out.println("성공!");
-		}
+		Boolean result = delete(7L);
+		System.out.println(result ? "성공" : "실패");
 	}
 
-	private static Boolean update(DeptVo vo) {
+	private static Boolean delete(long no) {
 		boolean result = false;
 		Connection conn = null;
-		Statement stmt = null;
+		PreparedStatement pstmt = null;
 		try {
 			//1. JDBC Driver 로딩
 			Class.forName("org.mariadb.jdbc.Driver");
@@ -30,15 +24,15 @@ public class UpdateTest01 {
 			String url = "jdbc:mysql://127.0.0.1:3306/employees?charset=utf8";
 			conn = DriverManager.getConnection(url, "hr", "hr");
 			
-			//3. Statement 생성
-			stmt =conn.createStatement();
+			//3. SQL 준비
+			String sql ="delete from dept where no=?";
+			pstmt =conn.prepareStatement(sql);
+			
+			//4 . binding
+			pstmt.setLong(1, no);
 			
 			//4. SQL 실행
-			String sql =
-					"update dept" +
-					"   set name='"+vo.getName()+"'"+
-					"where no="+vo.getNo();
-			int count = stmt.executeUpdate(sql);
+			int count = pstmt.executeUpdate();
 			
 			result = count ==1;
 		} catch (ClassNotFoundException e) {
@@ -49,8 +43,8 @@ public class UpdateTest01 {
 		}finally {
 			// clean up
 			try {
-				if(stmt != null) {
-				stmt.close();
+				if(pstmt != null) {
+				pstmt.close();
 				}
 				if(conn != null) {
 					conn.close();
@@ -60,6 +54,8 @@ public class UpdateTest01 {
 			}
 		}
 		return result;
+	
 	}
+	
 
 }

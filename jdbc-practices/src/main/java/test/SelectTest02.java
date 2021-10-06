@@ -2,26 +2,20 @@ package test;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 
-public class UpdateTest01 {
-
+public class SelectTest02 {
 	public static void main(String[] args) {
-		DeptVo vo = new DeptVo();
-		vo.setNo(10L);
-		vo.setName("전략팀");
-		
-		Boolean result = update(vo);
-		if(result) {
-			System.out.println("성공!");
-		}
+		search("pat");
 	}
-
-	private static Boolean update(DeptVo vo) {
-		boolean result = false;
+	
+	public static void search(String keyword) {
+	
 		Connection conn = null;
-		Statement stmt = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
 		try {
 			//1. JDBC Driver 로딩
 			Class.forName("org.mariadb.jdbc.Driver");
@@ -30,17 +24,19 @@ public class UpdateTest01 {
 			String url = "jdbc:mysql://127.0.0.1:3306/employees?charset=utf8";
 			conn = DriverManager.getConnection(url, "hr", "hr");
 			
-			//3. Statement 생성
-			stmt =conn.createStatement();
+			//3. SQL 준비
+			String sql ="select emp_no, first_name from employees where first_name like ?";
+			pstmt =conn.prepareStatement(sql);
 			
-			//4. SQL 실행
-			String sql =
-					"update dept" +
-					"   set name='"+vo.getName()+"'"+
-					"where no="+vo.getNo();
-			int count = stmt.executeUpdate(sql);
-			
-			result = count ==1;
+			//4. binding
+			pstmt.setString(1, "%" + keyword + "%");
+			//5. SQL 실행
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				Long empNo = rs.getLong(1);
+				String firstName = rs.getString(2);
+				System.out.println(empNo + ":" + firstName);
+			}
 		} catch (ClassNotFoundException e) {
 			System.out.println("드라이버 로딩 실패:" + e);
 			
@@ -49,8 +45,11 @@ public class UpdateTest01 {
 		}finally {
 			// clean up
 			try {
-				if(stmt != null) {
-				stmt.close();
+				if(rs != null) {
+					rs.close();
+				}
+				if(pstmt != null) {
+				pstmt.close();
 				}
 				if(conn != null) {
 					conn.close();
@@ -59,7 +58,6 @@ public class UpdateTest01 {
 				e.printStackTrace();
 			}
 		}
-		return result;
 	}
 
 }

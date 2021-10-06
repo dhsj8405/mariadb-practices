@@ -11,3 +11,23 @@ select no, name from dept;
 update dept set name='총무2팀' where no=5;
 
 delete from dept where no=8;
+
+select emp_no,
+       first_name, 
+	date_format(hire_date, '%Y-%m-%d') 
+  from employees 
+where first_name like '%ty%'  
+   or last_name like '%ty%' ;
+   
+select first_name
+from employees a, salaries b
+where a.emp_no = b.emp_no
+and b.to_date = '9999-01-01'
+and b.salary = (select min(salary) from salaries);
+
+select a.first_name,a.last_name,b.salary
+from employees a, salaries b
+where a.emp_no = b.emp_no
+and b.to_date = '9999-01-01'
+and b.salary < (select max(salary) from salaries)
+and b.salary > (select min(salary) from salaries);
