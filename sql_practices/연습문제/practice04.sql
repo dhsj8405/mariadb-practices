@@ -107,15 +107,24 @@ where a.emp_no = b.emp_no
 group by b.dept_no) b
 where a.dept_no = b.dept_no;
 
-select max(avg_salary) 
-  from (  select avg(salary) as avg_salary, b.dept_no
-		    from salaries a,dept_emp b
-	       where a.emp_no = b.emp_no
-		     and a.to_date ='9999-01-01'
-		     and b.to_date ='9999-01-01'
-		group by b.dept_no) a;
+select *
+from departments a,
+	 (select avg(salary) as avg_salary, b.dept_no
+	    from salaries a,dept_emp b
+	   where a.emp_no = b.emp_no
+		 and a.to_date ='9999-01-01'
+		 and b.to_date ='9999-01-01'
+	   group by b.dept_no) b
+where a.dept_no = b.dept_no;
 
-
+select max(avg_salary) as max_avg_salary, dept_no
+       from (select avg(salary) as avg_salary, b.dept_no
+				from salaries a,dept_emp b
+			   where a.emp_no = b.emp_no
+				 and a.to_date ='9999-01-01'
+				 and b.to_date ='9999-01-01'
+			   group by b.dept_no) a
+		where max_avg_salary.emp_no= dept_no;
 select *
 from departments a;
 -- 문제7.
