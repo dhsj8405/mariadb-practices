@@ -1,13 +1,24 @@
 package bookmall.dao.test;
 
+import java.util.List;
+
 import bookmall.dao.BookDao;
 import bookmall.vo.BookVo;
-import bookmall.vo.CategoryVo;
+import bookshop.dao.AuthorDao;
+import bookshop.vo.AuthorVo;
 
 public class BookDaoTest {
 	public static void main(String[] args) {
-		 insertTest();
+//		 insertTest();
+//		findAllTest();
+
 	}
+//	private static void findAllTest() {
+//		List<BookDao> list = new BookDao().findAll();
+//		for(AuthorVo vo : list) {
+//			System.out.println(vo);
+//		}
+//	}
 	private static void insertTest() {
 		BookVo vo = null;
 		BookDao dao = new BookDao();
