@@ -14,6 +14,16 @@ select *
 from book a, category b
 where a.category_no = b.no;
 
+insert into book values(null, 'abc' , 2000 , 1 )
+from book b, category c
+where c.ca
+
+select *
+from book a, category b
+where a.category_no = b.no;
+
+
+
 -- insert member
 insert into member values(null, '우동현', 'dhsj8405@naver.com', 1234, '010-2316-8405');
 select * from member;
@@ -23,7 +33,9 @@ insert into cart values(1,1,2);
 select * from cart;
 
 -- insert order
+  -- 1기본
 insert into `order` values('희동이',5000,'test@test.com',2);
 select * from `order`;
+ -- 2 
 
 

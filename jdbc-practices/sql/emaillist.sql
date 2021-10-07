@@ -1,0 +1,2 @@
+-- emaillist sql
+desc emaillist;
