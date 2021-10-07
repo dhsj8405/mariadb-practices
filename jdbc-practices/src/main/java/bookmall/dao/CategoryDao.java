@@ -3,8 +3,13 @@ package bookmall.dao;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
+import bookmall.vo.BookVo;
+import bookmall.vo.CartVo;
 import bookmall.vo.CategoryVo;
 
 public class CategoryDao {
@@ -61,5 +66,58 @@ public class CategoryDao {
 		}
 
 		return conn;
+	}
+	public List<CategoryVo> findAll() {
+		List<CategoryVo> result = new ArrayList<>();
+		
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		try {
+			conn = getConnection();
+			
+			//3. SQL 준비
+			String sql = 
+					"select ct.no, ct.name" + 
+					" from category ct";
+			pstmt = conn.prepareStatement(sql);
+			
+			//4. 바인딩(binding)
+			
+			//5. SQL 실행
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				int no = rs.getInt(1);
+				String name = rs.getString(2);
+				
+				CategoryVo vo = new CategoryVo();
+				vo.setNo(no);
+				vo.setName(name);
+				
+				result.add(vo);
+			}
+
+		} catch (SQLException e) {
+			System.out.println("error:" + e);
+		} finally {
+			// clean up
+			try {
+				if(rs != null) {
+					rs.close();
+				}
+				if(pstmt != null) {
+					pstmt.close();
+				}
+				if(conn != null) {
+					conn.close();
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return result;
 	}
 }

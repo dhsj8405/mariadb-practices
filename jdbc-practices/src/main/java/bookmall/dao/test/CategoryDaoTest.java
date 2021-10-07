@@ -1,13 +1,22 @@
 package bookmall.dao.test;
 
+import java.util.List;
+
 import bookmall.dao.CategoryDao;
 import bookmall.vo.CategoryVo;
+
 
 public class CategoryDaoTest {
 
 	public static void main(String[] args) {
-		insertTest();
-//		findAlltest();
+//		insertTest();
+		findAlltest();
+	}
+	private static void findAlltest() {		
+		List<CategoryVo> list = new CategoryDao().findAll();
+		for(CategoryVo vo : list) {
+			System.out.println(vo);
+		}
 	}
 	
 	private static void insertTest() {

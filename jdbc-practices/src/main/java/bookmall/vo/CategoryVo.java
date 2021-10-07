@@ -16,5 +16,10 @@ public class CategoryVo {
 	public void setName(String name) {
 		this.name = name;
 	}
+	@Override
+	public String toString() {
+		return "CategoryVo [카테고리번호 = " + no + ", 카테고리명 = " + name + "]";
+	}
+	
 	
 }
