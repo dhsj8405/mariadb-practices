@@ -11,6 +11,7 @@ import java.util.List;
 import bookmall.vo.BookVo;
 
 public class BookDao {
+	
 	public boolean insert(BookVo vo) {
 		boolean result = false;
 		Connection conn = null;
@@ -66,61 +67,64 @@ public class BookDao {
 
 		return conn;
 	}
-//	public List<BookVo> findAll() {
-//		List<BookVo> result = new ArrayList<>();
-//		
-//		Connection conn = null;
-//		PreparedStatement pstmt = null;
-//		ResultSet rs = null;
-//		
-//		try {
-//			conn = getConnection();
-//			
-//			//3. SQL 준비
-//			String sql = 
-//				"   select a.no, a.title, b.name as categoryName" +
-//				"     from book a, category b" +
-//				"    where a.category_no = b.no" +
-//				" order by no desc";
-//			pstmt = conn.prepareStatement(sql);
-//			
-//			//4. 바인딩(binding)
-//			
-//			//5. SQL 실행
-//			rs = pstmt.executeQuery();
-//			
-//			while(rs.next()) {
-//				Long no = rs.getLong(1);
-//				String title = rs.getString(2);
-//				String categoryName = rs.getString(3);
-//				
-//				BookVo vo = new BookVo();
-//				vo.setNo(no);
-//				vo.setTitle(title);
-//				vo.set
-//				
-//				result.add(vo);
-//			}
-//
-//		} catch (SQLException e) {
-//			System.out.println("error:" + e);
-//		} finally {
-//			// clean up
-//			try {
-//				if(rs != null) {
-//					rs.close();
-//				}
-//				if(pstmt != null) {
-//					pstmt.close();
-//				}
-//				if(conn != null) {
-//					conn.close();
-//				}
-//			} catch (SQLException e) {
-//				e.printStackTrace();
-//			}
-//		}
-//		
-//		return result;
-//	}
+	public List<BookVo> findAll() {
+		List<BookVo> result = new ArrayList<>();
+		
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		try {
+			conn = getConnection();
+			
+			//3. SQL 준비
+			String sql = 
+				"   select a.no, a.title, a.price, b.name as authorName" +
+				"     from book a, author b" +
+				"    where a.author_no = b.no" +
+				" order by no desc";
+			pstmt = conn.prepareStatement(sql);
+			
+			//4. 바인딩(binding)
+			
+			//5. SQL 실행
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				Long no = rs.getLong(1);
+				String title = rs.getString(2);
+				String price = rs.getInt(3);
+				String categoryNum = rs.getLong(4);
+				
+				
+				BookVo vo = new BookVo();
+				vo.setNo(no);
+				vo.setTitle(title);
+				vo.setprice(price);
+				vo.setcategoryNum(categoryNum);
+				
+				result.add(vo);
+			}
+
+		} catch (SQLException e) {
+			System.out.println("error:" + e);
+		} finally {
+			// clean up
+			try {
+				if(rs != null) {
+					rs.close();
+				}
+				if(pstmt != null) {
+					pstmt.close();
+				}
+				if(conn != null) {
+					conn.close();
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return result;
+	}
 }

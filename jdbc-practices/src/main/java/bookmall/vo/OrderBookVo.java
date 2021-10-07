@@ -3,7 +3,6 @@ package bookmall.vo;
 public class OrderBookVo {
 	private int bookNo;
 	private int quantity;
-	private int price;
 	private int orderNo;
 	public int getBookNo() {
 		return bookNo;
@@ -17,12 +16,7 @@ public class OrderBookVo {
 	public void setQuantity(int quantity) {
 		this.quantity = quantity;
 	}
-	public int getPrice() {
-		return price;
-	}
-	public void setPrice(int price) {
-		this.price = price;
-	}
+	
 	public int getOrderNo() {
 		return orderNo;
 	}
@@ -31,7 +25,7 @@ public class OrderBookVo {
 	}
 	@Override
 	public String toString() {
-		return "orderBookVo [bookNo=" + bookNo + ", quantity=" + quantity + ", price=" + price + ", orderNo=" + orderNo
+		return "orderBookVo [bookNo=" + bookNo + ", quantity=" + quantity + ", orderNo=" + orderNo
 				+ "]";
 	}
 	

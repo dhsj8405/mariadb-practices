@@ -16,7 +16,6 @@ public class OrderBookDaoTest {
 		vo = new OrderBookVo();
 		vo.setBookNo(1);
 		vo.setQuantity(1);
-		vo.setPrice(111);
 		vo.setOrderNo(1);
 		dao.insert(vo);
 	}

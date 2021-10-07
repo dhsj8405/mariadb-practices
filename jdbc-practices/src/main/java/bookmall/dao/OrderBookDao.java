@@ -17,13 +17,12 @@ public class OrderBookDao {
 			conn = getConnection();
 			
 			//3. SQL 준비
-			String sql = "insert into order_book values(?, ?, ?, ?)";
+			String sql = "insert into order_book values(?, ?, ?)";
 			pstmt = conn.prepareStatement(sql);
 			
 			//4. 바인딩(binding)
 			pstmt.setInt(1, vo.getBookNo());
 			pstmt.setInt(2, vo.getQuantity());
-			pstmt.setInt(3, vo.getPrice());
 			pstmt.setInt(4, vo.getOrderNo());
 			
 			//5. SQL 실행
