@@ -2,7 +2,6 @@ package bookmall.dao.test;
 
 import java.util.List;
 
-import bookmall.dao.BookDao;
 import bookmall.dao.CartDao;
 import bookmall.vo.CartVo;
 

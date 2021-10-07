@@ -8,7 +8,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import bookmall.vo.BookVo;
 import bookmall.vo.MemberVo;
 
 
@@ -98,8 +97,6 @@ public class MemberDao {
 				String email = rs.getString(3);
 				String password = rs.getString(4);
 				String phoneNumber = rs.getString(5);
-				
-				
 				
 				MemberVo vo = new MemberVo();
 				vo.setNo(no);

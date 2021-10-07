@@ -91,9 +91,7 @@ public class OrderDao {
 			+ " and o.member_no = m.no";
 			
 			pstmt = conn.prepareStatement(sql);
-			
-			//4. 바인딩(binding)
-			
+						
 			//5. SQL 실행
 			rs = pstmt.executeQuery();
 			

@@ -8,7 +8,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import bookmall.vo.BookVo;
 import bookmall.vo.CartVo;
 
 
@@ -86,8 +85,6 @@ public class CartDao {
 					+ " and  c.member_no = m.no"; 
 					
 			pstmt = conn.prepareStatement(sql);
-			
-			//4. 바인딩(binding)
 			
 			//5. SQL 실행
 			rs = pstmt.executeQuery();
