@@ -11,13 +11,13 @@ public class OrderBookDaoTest {
 //		insertTest();
 		findAlltest();
 	}
-	private static void findAlltest() {		
+	public static void findAlltest() {		
 		List<OrderBookVo> list = new OrderBookDao().findAll();
 		for(OrderBookVo vo : list) {
 			System.out.println(vo);
 		}
 	}
-	private static void insertTest() {
+	public static void insertTest() {
 		OrderBookVo vo = null;
 		OrderBookDao dao = new OrderBookDao();
 	

@@ -25,7 +25,7 @@ public class OrderBookVo {
 	}
 	@Override
 	public String toString() {
-		return "orderBookVo [bookNo=" + bookNo + ", quantity=" + quantity + ", orderNo=" + orderNo
+		return "주문 도서 리스트 [책번호 = " + bookNo + ", 수량 = " + quantity + ", 주문번호 = " + orderNo
 				+ "]";
 	}
 	

@@ -79,8 +79,8 @@ public class CategoryDao {
 			
 			//3. SQL 준비
 			String sql = 
-					"select ct.no, ct.name" + 
-					" from category ct";
+					"select no, name" + 
+					" from category";
 			pstmt = conn.prepareStatement(sql);
 			
 			//4. 바인딩(binding)

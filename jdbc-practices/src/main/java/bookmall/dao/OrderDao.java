@@ -78,14 +78,18 @@ public class OrderDao {
 			
 			//3. SQL 준비
 			String sql ="select o.no as order_num ,"
-					+ " o.name,"
-					+ " o.payment,"
-					+ " o.address,"
-					+ " m.no as member_no"
-					+ " from `order` o,"
-					+ " member m"
-					+ " where o.member_no = m.no" ;
-					
+			+ " m.name,"
+			+ " b.price*ob.quantity as payment,"
+			+ " o.address,"
+			+ " m.no as member_no"
+			+ " from `order` o,"
+			+ " order_book ob ,"
+			+ " book b, "
+			+ " member m"
+			+ " where o.no = ob.order_no"
+			+ " and ob.book_no = b.no"
+			+ " and o.member_no = m.no";
+			
 			pstmt = conn.prepareStatement(sql);
 			
 			//4. 바인딩(binding)
@@ -94,14 +98,14 @@ public class OrderDao {
 			rs = pstmt.executeQuery();
 			
 			while(rs.next()) {
-				int orderNum = rs.getInt(1);
+				int orderNo = rs.getInt(1);
 				String memberName = rs.getString(2);
 				int payment = rs.getInt(3);
 				String address = rs.getString(4);
 				int memberNo = rs.getInt(5);
 				
 				OrderVo vo = new OrderVo();
-				vo.setNo(orderNum);
+				vo.setNo(orderNo);
 				vo.setName(memberName);
 				vo.setPayment(payment);
 				vo.setAddress(address);

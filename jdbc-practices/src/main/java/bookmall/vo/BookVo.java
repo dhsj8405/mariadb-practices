@@ -41,7 +41,7 @@ public class BookVo {
 
 	@Override
 	public String toString() {
-		return "BookVo [책 번호 = " + no + ", 책 이름 = " + title + ", 가격 = " + price + ", 카테고리번호 = " + categoryNum;
+		return "책 리스트[책 번호 = " + no + ", 책 이름 = " + title + ", 가격 = " + price + "]";
 	}
 
 	

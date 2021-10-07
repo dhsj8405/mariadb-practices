@@ -86,7 +86,6 @@ public class OrderBookDao {
 					+ " where ob.book_no = b.no"
 					+ " and ob.order_no = o.no";
 				
-
 			pstmt = conn.prepareStatement(sql);
 			
 			//5. SQL 실행

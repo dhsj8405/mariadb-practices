@@ -11,14 +11,14 @@ public class MemberDaoTest {
 		findAlltest();
 	}
 	
-	private static void findAlltest() {		
+	public static void findAlltest() {		
 		List<MemberVo> list = new MemberDao().findAll();
 		for(MemberVo vo : list) {
 			System.out.println(vo);
 		}
 	}
 	
-	private static void insertTest() {
+	public static void insertTest() {
 		MemberVo vo = null;
 		MemberDao dao = new MemberDao();
 		

@@ -39,8 +39,7 @@ public class OrderVo {
 	}
 	@Override
 	public String toString() {
-		return "OrderVo [no=" + no + ", name=" + name + ", payment=" + payment + ", address=" + address + ", memberNo="
-				+ memberNo + "]";
+		return "주문 리스트 [주문번호 = " + no + ", 이름 = " + name + ", 총금액 = " + payment + ", 주소 = " + address+"]";
 	}
 	
 }

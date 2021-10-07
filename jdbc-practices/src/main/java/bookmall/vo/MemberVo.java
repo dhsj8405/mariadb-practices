@@ -38,8 +38,8 @@ public class MemberVo {
 	}
 	@Override
 	public String toString() {
-		return "MemberVo [no=" + no + ", name=" + name + ", email=" + email + ", password=" + password
-				+ ", phoneNumber=" + phoneNumber + "]";
+		return "회원리스트 [회원번호 = " + no + ", 이름 = " + name + ", email = " + email + ", password = " + password
+				+ ", phoneNumber = " + phoneNumber + "]";
 	}
 	
 }

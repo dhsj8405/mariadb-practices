@@ -9,15 +9,15 @@ import bookmall.vo.CartVo;
 public class CartDaoTest {
 	public static void main(String[] args) {
 //		insertTest();
-		findAllTest();
+		findAlltest();
 	}
-	private static void findAllTest() {
+	public static void findAlltest() {
 		List<CartVo> list = new CartDao().findAll();
 		for(CartVo vo : list) {
 			System.out.println(vo);
 		}
 	}
-	private static void insertTest() {
+	public static void insertTest() {
 		CartVo vo = null;
 		CartDao dao = new CartDao();
 	

@@ -9,16 +9,16 @@ import bookmall.vo.BookVo;
 public class BookDaoTest {
 	public static void main(String[] args) {
 //		 insertTest();
-		findAllTest();
+		findAlltest();
 
 	}
-	private static void findAllTest() {
+	public static void findAlltest() {
 		List<BookVo> list = new BookDao().findAll();
 		for(BookVo vo : list) {
 			System.out.println(vo);
 		}
 	}
-	private static void insertTest() {
+	public static void insertTest() {
 		BookVo vo = null;
 		BookDao dao = new BookDao();
 		
